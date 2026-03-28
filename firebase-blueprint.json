@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "Expense": {
+      "title": "Expense",
+      "description": "A single expense record.",
+      "type": "object",
+      "properties": {
+        "amount": { "type": "number", "description": "Amount spent in INR." },
+        "category": { "type": "string", "description": "Category of the expense." },
+        "description": { "type": "string", "description": "Description of the expense." },
+        "date": { "type": "string", "format": "date", "description": "Date of the expense (YYYY-MM-DD)." },
+        "uid": { "type": "string", "description": "The user ID of the owner." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation." }
+      },
+      "required": ["amount", "category", "description", "date", "uid", "createdAt"]
+    },
+    "Budget": {
+      "title": "Budget",
+      "description": "User's monthly budget settings.",
+      "type": "object",
+      "properties": {
+        "monthlyLimit": { "type": "number", "description": "Monthly spending limit in INR." },
+        "uid": { "type": "string", "description": "The user ID of the owner." }
+      },
+      "required": ["monthlyLimit", "uid"]
+    }
+  },
+  "firestore": {
+    "/expenses": {
+      "schema": "Expense",
+      "description": "Collection of all user expenses."
+    },
+    "/budgets": {
+      "schema": "Budget",
+      "description": "User budget settings indexed by user ID."
+    }
+  }
+}
